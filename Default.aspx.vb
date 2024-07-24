@@ -1,11 +1,17 @@
 Partial Class Default
     Inherits System.Web.UI.Page
 
-    Protected Sub RadioButtonYes_Click(sender As Object, e As EventArgs) Handles RadioButtonYes.Click
-        dataField.Enabled = True
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        ' Add the OnClick event handlers dynamically
+        AddHandler RadioButtonYes.CheckedChanged, AddressOf RadioButtonYes_CheckedChanged
+        AddHandler RadioButtonNo.CheckedChanged, AddressOf RadioButtonNo_CheckedChanged
     End Sub
 
-    Protected Sub RadioButtonNo_Click(sender As Object, e As EventArgs) Handles RadioButtonNo.Click
-        dataField.Enabled = False
+    Protected Sub RadioButtonYes_CheckedChanged(sender As Object, e As EventArgs)
+        dataField.Enabled = RadioButtonYes.Checked
+    End Sub
+
+    Protected Sub RadioButtonNo_CheckedChanged(sender As Object, e As EventArgs)
+        dataField.Enabled = Not RadioButtonNo.Checked
     End Sub
 End Class
