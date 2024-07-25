@@ -178,7 +178,7 @@
                                     <asp:RadioButton ID="RadioButtonNo" runat="server" GroupName="editOption" Text="No" Checked="True" />
                                 </label>
 
-                                <script type="text/javascript">
+                              <!--  <script type="text/javascript">
                                     function toggleField(this) {
                                         var yesRadio = document.getElementById('<%= RadioButtonYes.AgreementID %>');
             var dataField = document.getElementById('<%= FinalCertificatePeriodEndDateTextBox.AgreementID %>');
@@ -188,7 +188,7 @@
                                             dataField.disabled = true;
                                         }
                                     }
-                                </script>
+                                </script> -->
 
                             </p>
 
