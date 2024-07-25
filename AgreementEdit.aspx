@@ -5,7 +5,6 @@
 <%@ Register TagPrefix="cc2" TagName="FilterResetControl" Src="~/Common/Controls/FilterResetControl.ascx" %>
 <%@ Register TagPrefix="cc" TagName="OnlineHelp" Src="~/Common/Controls/OnlineHelpControl.ascx" %>
 
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2 class="left">Agreement Onboarding Details Edit
     </h2>
@@ -172,27 +171,12 @@
                                 <asp:Label ID="llEarlyTermination" runat="server"
                                     Text="Early Termination " CssClass="sideLabel prompt-200w"></asp:Label>
                                 <label for="RadioButtonYes">
-                                    <asp:RadioButton ID="RadioButtonYes" runat="server" GroupName="editOption" Text="Yes" OnClick="toggleField(this)" />
+                                    <asp:RadioButton ID="RadioButtonYes" runat="server" GroupName="editOption" Text="Yes" OnClick="toggleField()" />
                                 </label>
                                 <label for="RadioButtonNo">
-                                    <asp:RadioButton ID="RadioButtonNo" runat="server" GroupName="editOption" Text="No" Checked="True" />
+                                    <asp:RadioButton ID="RadioButtonNo" runat="server" GroupName="editOption" Text="No" Checked="True" OnClick="toggleField()" />
                                 </label>
-
-                              <!--  <script type="text/javascript">
-                                    function toggleField(this) {
-                                        var yesRadio = document.getElementById('<%= RadioButtonYes.AgreementID %>');
-            var dataField = document.getElementById('<%= FinalCertificatePeriodEndDateTextBox.AgreementID %>');
-                                        if (yesRadio.checked) {
-                                            dataField.disabled = false;
-                                        } else {
-                                            dataField.disabled = true;
-                                        }
-                                    }
-                                </script> -->
-
                             </p>
-
-
                         </ItemTemplate>
                     </asp:FormView>
                 </div>
@@ -201,5 +185,20 @@
                 ToolTip="Save" CssClass="styledLink primary" />
         </ContentTemplate>
     </asp:UpdatePanel>
-</asp:Content>
 
+    <script type="text/javascript">
+        function toggleField() {
+            var yesRadio = document.getElementById('<%= RadioButtonYes.ClientID %>');
+            var noRadio = document.getElementById('<%= RadioButtonNo.ClientID %>');
+            var dataField = document.getElementById('<%= FinalCertificatePeriodEndDateTextBox.ClientID %>');
+            if (yesRadio.checked) {
+                dataField.readOnly = false;
+            } else {
+                dataField.readOnly = true;
+            }
+        }
+
+        // Ensure the field is set correctly on page load
+        window.onload = toggleField;
+    </script>
+</asp:Content>
